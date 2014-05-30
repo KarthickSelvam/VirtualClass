@@ -1,38 +1,134 @@
 body {
-    background-color: #333333;
+    background-color: #2D2E33;
 }
+/*login*/
+.navbar-header {
+    background: none repeat scroll 0 0 #29C7CA;
+    float: left;
+    height: 50px;
+}
+.column_middle_grid1 {
+    border-radius: 5px;
+	  margin: 0 auto;
+    width: 340px;
+	height:410px;
+}
+.profile_picture {
+    padding: 2em 3em;
+    position: relative;
+    text-align: center;
+}
+
+.profile_picture > a > img {
+    border: 5px solid #50597B;
+    border-radius: 8em;
+    display: block;
+    margin: 0 auto;
+}
+
+.profile_picture_name h2 {
+    color: #FFFFFF;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+.profile_picture_name p {
+    color: #9099B7;
+    font-size: 1em;
+    line-height: 1.6em;
+}
+.profile_picture a {
+    display: block;
+}
+
+.profile_picture_name {
+    padding-top: 2em;
+}
+.profile_picture span {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.articles_list {
+    background: none repeat scroll 0 0 #50597B;
+    border-radius: 0 0 5px 5px;
+    text-align: center;
+}
+
+.articles_list li {
+    border-right: 1px solid #1F253D;
+    float: left;
+    width: 33.1%;
+}
+
+.articles_list li:nth-child(3) {
+    border-right: medium none;
+}
+
+.articles_list li a.red {
+    border-top: 5px solid #E64C65;
+}
+.articles_list li a {
+    color: #FFFFFF;
+    display: block;
+    font-size: 1em;
+    padding: 20px 0;
+    transition: all 0.5s ease-in-out 0s;
+}
+
+.articles_list li a img {
+    padding-right: 5px;
+    vertical-align: middle;
+}
+img {
+    max-width: 100%;
+}
+
+.articles_list li a.purple {
+    border-top: 5px solid #11A8AB;
+}
+
+.articles_list li a.yellow {
+    border-top: 5px solid #FCB150;
+}
+.login{
+	margin-top: 8px;
+    padding: 6px;
+    width: 100%;
+	}
+/**/
 .mytopbar{
-	background-color:#00B49C;
+	background-color:#2D2E33;
 	}
 .mytopbar a {
     color: #FFFFFF;
 }
-.navbar-default{
+.navbar-default, .sidebar-collapse{
 	border:none;
+	
 	}
 .navbar-default .navbar-brand{
 	color:#FFFFFF;
 	}
 .nav > li > a:hover, .nav > li > a:focus{
-	background-color:#5698BE;
+	background-color:#2AA3D8;
 	}
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: #5A5A51;
 }
 .sidebar-collapse {
-    background-color: #5A5A51;
+    background-color: #363636;
     border-color: #333333;
 }
 .navbar-static-side ul li {
 	border:none !important;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #333333;	
 }
 .list-group-item {
     border: none;
-	 border-bottom: 1px solid #333333;
+	border-bottom: 1px solid #333333;
 }
 .panel-default > .panel-heading {
-    background-color: #79776F;
+    background-color: #29C7CA;
     border-color: #DDDDDD;
     color: #FFFFFF;
 }

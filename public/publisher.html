@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+
+  <body class="conf">
+    <link href="css/video.css" rel="stylesheet">
+    <script src="js/video.js" ></script>
+    <script type="text/javascript" charset="utf-8">
+
+     var apiKey    = "44815052";
+  var sessionId = "1_MX40NDgxNTA1Mn5-RnJpIE1heSAzMCAwMDoxMToxNSBQRFQgMjAxNH4wLjkxMjM4NDJ-fg";
+  var token = "T1==cGFydG5lcl9pZD00NDgxNTA1MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1hZjI3N2JmNjk5NTlkNDkyMGI1NjYyMDAwYThmYzQyZjdjZWE1MTE1OnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRneE5UQTFNbjUtUm5KcElFMWhlU0F6TUNBd01Eb3hNVG94TlNCUVJGUWdNakF4Tkg0d0xqa3hNak00TkRKLWZnJmNyZWF0ZV90aW1lPTE0MDE0MzM4ODkmbm9uY2U9MC4wNjc1NDc4MTMwMzc0MTA3NSZleHBpcmVfdGltZT0xNDAxNTIwMjYwJmNvbm5lY3Rpb25fZGF0YT0=";
+
+       var session = OT.initSession(apiKey, sessionId);
+
+      session.on("streamCreated", function(event) {
+        session.subscribe(event.stream);
+      });
+
+      // Replace with a valid token.
+      // See http://tokbox.com/opentok/tutorials/create-token/
+      session.connect(token, function(error) {
+        var publisher = OT.initPublisher()
+        session.publish(publisher);
+      });
+    </script>
+  </body>
+</html>

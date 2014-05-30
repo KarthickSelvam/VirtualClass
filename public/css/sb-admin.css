@@ -31,7 +31,6 @@ body {
         position: inherit;
         margin: 0 0 0 170px;
         padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
     }
 }
 
@@ -135,7 +134,7 @@ body {
         z-index: 1;
         position: absolute;
         width: 170px;
-        margin-top: 51px;
+        margin-top: 50px;
     }
 
     .navbar-top-links .dropdown-messages,
