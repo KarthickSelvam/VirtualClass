@@ -1,0 +1,9 @@
+iframe {
+    width: 100%;
+}
+.conf .OT_mirrored{
+    float: left;
+    margin: 1px;
+    padding: 0;
+    width: 33% !important;
+}
