@@ -1,27 +1,47 @@
 var express = require('express')
 , app = express()
+, OpenTok = require('./lib/opentok')
 , server = require('http').createServer(app)
 , io = require("socket.io").listen(server)
 , uuid = require('node-uuid')
 , Room = require('./room.js')
 , _ = require('underscore')._;
 
+var apiKey = 44816552,
+    apiSecret = '5734c2c21138495a89abbda37b9549406e94556f',
+    sessionId='1_MX40NDgxNjU1Mn5-U2F0IE1heSAzMSAwNjo1MjoyNCBQRFQgMjAxNH4wLjgwOTE0MjY1fn4',
+    token='T1==cGFydG5lcl9pZD00NDgxNjU1MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz05YzY1YjYxOGFmNWVkOGNkNThmMjE5ZTI2MzQxODUzNjIyOWRmMDBhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRneE5qVTFNbjUtVTJGMElFMWhlU0F6TVNBd05qbzFNam95TkNCUVJGUWdNakF4Tkg0d0xqZ3dPVEUwTWpZMWZuNCZjcmVhdGVfdGltZT0xNDAxNTQ0MzUxJm5vbmNlPTAuNTk2OTEwMTI3MzA3NDAyNiZleHBpcmVfdGltZT0xNDAyMTQ5MTM1JmNvbm5lY3Rpb25fZGF0YT0=';
+    
+if (!apiKey || !apiSecret) {
+  console.log('You must specify API_KEY and API_SECRET environment variables');
+  process.exit(1);
+}
 app.configure(function() {
-	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
-  	app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
+	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
+  	app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "10.98.5.137");
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.static(__dirname + '/public'));
+        console.log(__dirname);
 	app.use('/components', express.static(__dirname + '/components'));
 	app.use('/js', express.static(__dirname + '/js'));
 	app.use('/icons', express.static(__dirname + '/icons'));
 	app.set('views', __dirname + '/views');
-	app.engine('html', require('ejs').renderFile);
+	//app.engine('html', require('ejs').renderFile);
 });
 
 app.get('/', function(req, res) {
   res.render('index.html');
 });
+
+app.get('/student/:id/:name', function(req, res) {
+      
+  res.render('student.ejs',{classID: req.params.id ,name: req.params.name});
+});
+app.get('/teacher/:className/:name', function(req, res) {  
+  res.render('teacher.ejs',{className: req.params.className ,name: req.params.name});
+});
+
 
 server.listen(app.get('port'), app.get('ipaddr'), function(){
 	console.log('Express server listening on  IP: ' + app.get('ipaddr') + ' and port ' + app.get('port'));
@@ -34,36 +54,6 @@ var sockets = [];
 var chatHistory = {};
 
 function purge(s, action) {
-	/*
-	The action will determine how we deal with the room/user removal.
-	These are the following scenarios:
-	if the user is the owner and (s)he:
-		1) disconnects (i.e. leaves the whole server)
-			- advise users
-		 	- delete user from people object
-			- delete room from rooms object
-			- delete chat history
-			- remove all users from room that is owned by disconnecting user
-		2) removes the room
-			- same as above except except not removing user from the people object
-		3) leaves the room
-			- same as above
-	if the user is not an owner and (s)he's in a room:
-		1) disconnects
-			- delete user from people object
-			- remove user from room.people object
-		2) removes the room
-			- produce error message (only owners can remove rooms)
-		3) leaves the room
-			- same as point 1 except not removing user from the people object
-	if the user is not an owner and not in a room:
-		1) disconnects
-			- same as above except not removing user from room.people object
-		2) removes the room
-			- produce error message (only owners can remove rooms)
-		3) leaves the room
-			- n/a
-	*/
 	if (people[s.id].inroom) { //user is in a room
 		var room = rooms[people[s.id].inroom]; //check which room user is in.
 		if (s.id === room.owner) { //user in room and owns room
@@ -89,7 +79,7 @@ function purge(s, action) {
 				sizePeople = _.size(people);
 				sizeRooms = _.size(rooms);
 				io.sockets.emit("update-people", {people: people, count: sizePeople});
-				io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
+				//io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
 				var o = _.findWhere(sockets, {'id': s.id});
 				sockets = _.without(sockets, o);
 			} else if (action === "removeRoom") { //room owner removes room
@@ -112,7 +102,7 @@ function purge(s, action) {
 				room.people = _.without(room.people, s.id); //remove people from the room:people{}collection
 				delete chatHistory[room.name]; //delete the chat history
 				sizeRooms = _.size(rooms);
-				io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
+				//io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
 			} else if (action === "leaveRoom") { //room owner leaves room
 				io.sockets.in(s.room).emit("update", "The owner (" +people[s.id].name + ") has left the room. The room is removed and you have been disconnected from it as well.");
 				var socketids = [];
@@ -133,7 +123,7 @@ function purge(s, action) {
 				room.people = _.without(room.people, s.id); //remove people from the room:people{}collection
 				delete chatHistory[room.name]; //delete the chat history
 				sizeRooms = _.size(rooms);
-				io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
+				//io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
 			}
 		} else {//user in room but does not own room
 			if (action === "disconnect") {
@@ -183,7 +173,7 @@ io.sockets.on("connection", function (socket) {
 			if (key.name.toLowerCase() === name.toLowerCase())
 				return exists = true;
 		});
-		if (exists) {//provide unique username:
+		if (exists) { //provide unique username:
 			var randomNumber=Math.floor(Math.random()*1001)
 			do {
 				proposedName = name+randomNumber;
@@ -200,7 +190,7 @@ io.sockets.on("connection", function (socket) {
 			sizePeople = _.size(people);
 			sizeRooms = _.size(rooms);
 			io.sockets.emit("update-people", {people: people, count: sizePeople});
-			socket.emit("roomList", {rooms: rooms, count: sizeRooms});
+			//socket.emit("roomList", {rooms: rooms, count: sizeRooms});
 			socket.emit("joined"); //extra emit for GeoLocation
 			sockets.push(socket);
 		}
@@ -211,8 +201,8 @@ io.sockets.on("connection", function (socket) {
         });
 
 	socket.on("countryUpdate", function(data) { //we know which country the user is from
-		country = data.country.toLowerCase();
-		people[socket.id].country = country;
+		//country = data.country.toLowerCase();
+		//people[socket.id].country = country;
 		io.sockets.emit("update-people", {people: people, count: sizePeople});
 	});
 
@@ -264,7 +254,7 @@ io.sockets.on("connection", function (socket) {
 		    	}
 		}
 	});
-
+        
     socket.on("askquestion", function() {
 		if (io.sockets.manager.roomClients[socket.id]['/'+socket.room] !== undefined ) {
 				io.sockets.in(socket.room).emit("showquestion", people[socket.id], msg);
@@ -290,23 +280,48 @@ io.sockets.on("connection", function (socket) {
 		if (people[socket.id].inroom) {
 			socket.emit("update", "You are in a room. Please leave it first to create your own.");
 		} else if (!people[socket.id].owns) {
-			var id = uuid.v4();
-			var room = new Room(name, id, socket.id);
-			rooms[id] = room;
-			sizeRooms = _.size(rooms);
-			io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms});
-			//add room to socket, and auto join the creator of the room
-			socket.room = name;
-			socket.join(socket.room);
-			people[socket.id].owns = id;
-			people[socket.id].inroom = id;
-			room.addPerson(socket.id);
-			socket.emit("update", "Welcome to " + room.name + ".");
-			socket.emit("sendRoomID", {id: id});
-			chatHistory[socket.room] = [];
+			
+                        //var opentok = new OpenTok(apiKey, apiSecret);
+                          // Create a session and store it in the express app
+                          //opentok.createSession(function(err, session) {
+                            //if (err) throw err;
+                            //app.set('sessionId', session.sessionId);
+                            var id = Math.floor(Math.random() * (200 - 100 + 1)) + 100;;
+                            var room = new Room(name, id, socket.id,sessionId);
+                            rooms[id] = room;
+                            sizeRooms = _.size(rooms);
+                            //token = opentok.generateToken(sessionId, { role: 'moderator' });
+                            console.log(token);
+                            io.sockets.emit("roomList", {rooms: rooms, count: sizeRooms, token:token, apiKey:apiKey,sessionId:sessionId,displayName:people[socket.id].name});
+                            //add room to socket, and auto join the creator of the room
+                            socket.room = name;
+                            socket.join(socket.room);
+                            people[socket.id].owns = id;
+                            people[socket.id].inroom = id;
+                            room.addPerson(socket.id);
+                            socket.emit("update", "Welcome to " + room.name + ".");
+                            socket.emit("sendRoomID", {id: id});
+                            //chatHistory[socket.room] = [];
+                            // We will wait on starting the app until this is done
+                            //init();
+                          //});
+			
 		} else {
 			socket.emit("update", "You have already created a room.");
 		}
+	});
+        
+        socket.on("getSession", function(classID) {
+		//_.find(rooms, function(key,value) {
+                    //console.log(key);
+			//if (key.id === classID){
+                          //console.log(key);
+                          //console.log(classID);
+                          //var opentok = new OpenTok(apiKey, apiSecret);
+                          //token = opentok.generateToken(key.sessionID, { role: 'publisher' });
+                          io.sockets.emit("startParticipant", {token:token,apiKey:apiKey,sessionId:sessionId,displayName:people[socket.id].name});
+                  //}
+		//});
 	});
 
 	socket.on("check", function(name, fn) {
@@ -365,3 +380,54 @@ io.sockets.on("connection", function (socket) {
 			purge(socket, "leaveRoom");
 	});
 });
+
+        io.sockets.on("connection", function (socket) {
+            socket.on("send_message", function(data) {
+              data.message = data.message;
+                    socket.broadcast.emit("get_message",data);
+            });
+        });
+        
+        io.sockets.on("connection", function (socket) {
+            socket.on("send_chat", function(data) {
+              data.message = data.message;
+                    io.sockets.emit("get_chat",data);
+                    //io.socket.in('teacher').emit('new_msg', {msg: 'hello'});
+            });
+        });
+        
+        
+        io.sockets.on("connection", function (socket) {
+            socket.on("send_answer", function(data) {
+              data.message = data.message;
+                    //io.socket.in('teacher').emit('get_answer', data);
+                    io.sockets.emit("get_answer",data);
+            });
+        });
+        
+        io.sockets.on("connection", function (socket) {
+            socket.on("send_message", function(data) {
+              data.message = data.message;
+              data.number = data.number;
+                    socket.broadcast.emit("get_message",data);
+            });
+        });
+        
+        io.sockets.on("connection", function (socket) {
+            socket.on("send_chat", function(data) {
+              data.message = data.message;
+                    io.sockets.emit("get_chat",data);
+                    //io.socket.in('teacher').emit('new_msg', {msg: 'hello'});
+            });
+        });
+        
+        
+        io.sockets.on("connection", function (socket) {
+            socket.on("send_answer", function(data) {
+              data.message = data.message;
+              data.name=data.name;
+                    //io.socket.in('teacher').emit('get_answer', data);
+                    console.log(people[socket.id]);
+                    io.sockets.emit("get_answer",people[socket.id],data);
+            });
+        });

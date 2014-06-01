@@ -1,4 +1,4 @@
-function Room(name, id, owner) {
+function Room(name, id, owner, sessionID) {
   this.name = name;
   this.id = id;
   this.owner = owner;
@@ -6,6 +6,7 @@ function Room(name, id, owner) {
   this.peopleLimit = 4;
   this.status = "available";
   this.private = false;
+  this.sessionID = sessionID;
 };
 
 Room.prototype.addPerson = function(personID) {

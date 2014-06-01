@@ -67,7 +67,7 @@ function toggleChatWindow() {
 
 $(document).ready(function() {
   //setup "global" variables first
-  var socket = io.connect("10.98.5.151:80");
+  socket = io.connect("http://10.98.5.137:3000");
   var myRoomID = null;
 
   $("form").submit(function(event) {
@@ -104,6 +104,14 @@ $(document).ready(function() {
     } else {
       socket.emit("joinserver", name, device);
       toggleNameForm();
+      if(name == "teacher"){
+          $("#id_quiz").show();
+          $("#role").show();
+      }
+      else{
+          $("#id_quiz").hide();
+          $("#role_id").val('123');
+      }
       toggleChatWindow();
       $("#msg").focus();
     }
@@ -213,7 +221,7 @@ $(document).ready(function() {
     var roomID = $(this).attr("id");
     socket.emit("joinRoom", roomID);
   });
-
+  
   $("#rooms").on('click', '.removeRoomBtn', function() {
     var roomName = $(this).siblings("span").text();
     var roomID = $(this).attr("id");
@@ -232,55 +240,6 @@ $(document).ready(function() {
     $("#msg").val("w:"+name+":");
     $("#msg").focus();
   });
-/*
-  $("#whisper").change(function() {
-    var peopleOnline = [];
-    if ($("#whisper").prop('checked')) {
-      console.log("checked, going to get the peeps");
-      //peopleOnline = ["Tamas", "Steve", "George"];
-      socket.emit("getOnlinePeople", function(data) {
-        $.each(data.people, function(clientid, obj) {
-          console.log(obj.name);
-          peopleOnline.push(obj.name);
-        });
-        console.log("adding typeahead")
-        $("#msg").typeahead({
-            local: peopleOnline
-          }).each(function() {
-            if ($(this).hasClass('input-lg'))
-              $(this).prev('.tt-hint').addClass('hint-lg');
-        });
-      });
-      
-      console.log(peopleOnline);
-    } else {
-      console.log('remove typeahead');
-      $('#msg').typeahead('destroy');
-    }
-  });
-  // $( "#whisper" ).change(function() {
-  //   var peopleOnline = [];
-  //   console.log($("#whisper").prop('checked'));
-  //   if ($("#whisper").prop('checked')) {
-  //     console.log("checked, going to get the peeps");
-  //     peopleOnline = ["Tamas", "Steve", "George"];
-  //     // socket.emit("getOnlinePeople", function(data) {
-  //     //   $.each(data.people, function(clientid, obj) {
-  //     //     console.log(obj.name);
-  //     //     peopleOnline.push(obj.name);
-  //     //   });
-  //     // });
-  //     //console.log(peopleOnline);
-  //   }
-  //   $("#msg").typeahead({
-  //         local: peopleOnline
-  //       }).each(function() {
-  //         if ($(this).hasClass('input-lg'))
-  //           $(this).prev('.tt-hint').addClass('hint-lg');
-  //       });
-  // });
-*/
-
 //socket-y stuff
 socket.on("exists", function(data) {
   $("#errors").empty();
@@ -342,7 +301,7 @@ socket.on("history", function(data) {
       } else {
         html = "<img class=\"flag flag-"+obj.country+"\"/>";
       }
-      $('#people').append("<li class=\"list-group-item\"><span>" + obj.name + "</span> <i class=\"fa fa-"+obj.device+"\"></i> " + html + " <a href=\"#\" class=\"whisper btn btn-xs\">whisper</a></li>");
+      $('#people').append("<li class=\"list-group-item\"><span id="+obj.name+">" + obj.name + "</span> <i class=\"fa fa-"+obj.device+"\"></i> " + html + " <a href=\"#\" class=\"whisper btn btn-xs\">whisper</a></li>");
       //peopleOnline.push(obj.name);
     });
 
@@ -374,21 +333,48 @@ socket.on("history", function(data) {
     $("#msgs").append("<li><strong><span class='text-muted'>" + person.name + "</span></strong> "+s+": " + msg + "</li>");
   });
 
-  socket.on("roomList", function(data) {
-    $("#rooms").text("");
-    $("#rooms").append("<li class=\"list-group-item active\">List of rooms <span class=\"badge\">"+data.count+"</span></li>");
-     if (!jQuery.isEmptyObject(data.rooms)) { 
-      $.each(data.rooms, function(id, room) {
-        var html = "<button id="+id+" class='joinRoomBtn btn btn-default btn-xs' >Join</button>" + " " + "<button id="+id+" class='removeRoomBtn btn btn-default btn-xs'>Remove</button>";
-        $('#rooms').append("<li id="+id+" class=\"list-group-item\"><span>" + room.name + "</span> " + html + "</li>");
-      });
-    } else {
-      $("#rooms").append("<li class=\"list-group-item\">There are no rooms yet.</li>");
-    }
+  socket.on("roomList", function(data) {   
+           alert(name);
+    var session = OT.initSession(data.apiKey, data.sessionId);
+   session.on("sessionConnected", function (event) {
+      var publisherOptions = {width: 400, height:300, name:name};
+       // This assumes that there is a DOM element with the ID 'publisher':
+       publisher = OT.initPublisher('publisher', publisherOptions);
+      session.publish(publisher);
+      alert('sessionConnected');
+   });
+   session.connect(data.token);
+   session.on('streamCreated', function(event) {
+  console.log(event);
+   alert('streamCreated');
+  session.subscribe(event.stream, "students", { insertMode: "append" });
+});
   });
+    socket.on("startParticipant", function(data) {   
+    var session = OT.initSession(data.apiKey,data.sessionId);
+    
+   session.on("sessionConnected", function (event) {
+      var publisherOptions = {width: 200, height:100, name:name};
+       // This assumes that there is a DOM element with the ID 'publisher':
+       publisher = OT.initPublisher('students', publisherOptions);
+       console.log(event);
+       alert('sessionConnected');
+      session.publish(publisher);
+   });
+   session.connect(data.token);
+   session.on('streamCreated', function(event) {
+  console.log(event);
+  alert('streamCreated');
+  session.subscribe(event.stream, "students", { insertMode: "append" });
+  });
+});
+
+
 
   socket.on("sendRoomID", function(data) {
     myRoomID = data.id;
+    alert(data.id);
+    $('#roomid').html(data.id);
   });
 
   socket.on("disconnect", function(){
@@ -396,5 +382,180 @@ socket.on("history", function(data) {
     $("#msg").attr("disabled", "disabled");
     $("#send").attr("disabled", "disabled");
   });
+  
+  $('#sender').click(function() {
+            //var user_message = $('#message_box_1').val();
+            user_message=1;
+            //alert(user_message);
+            socket.emit('send_message',{message: user_message});
+    });
+    
+    socket.on("get_message", function(data) {
+        $('#data > #question_1').show();
+        });
+        
+        
+        
+    $('#btn-chat').click(function() {
+            var user_message = $('#btn-input').val();
+            socket.emit('send_chat',{message: user_message});
+    });
+    
+    socket.on("get_chat", function(data) {
+        $('.chat').append('<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header">strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i> 12 mins ago</small></div><p>'+ data.message +' </p></div></li>');
+        });
+        
+     $('#submit-btn').click(function() {
+            var user_message = 1;     
+            socket.emit('send_answer',{message: user_message});
+    });   
 
-});
+        
+$('#sender_1').bind("click", function(event) {
+            send_msg("sender_1");
+    });
+
+    $('#sender_2').bind("click", function(event) {
+             send_msg("sender_2");
+    });
+    
+    $('#sender_3').bind("click", function(event) {
+            send_msg("sender_1");
+    });
+
+    $('#sender_4').bind("click", function(event) {
+             send_msg("sender_2");
+    });
+    
+    $('#sender_5').bind("click", function(event) {
+             send_msg("sender_2");
+    });
+    
+    function send_msg(data){
+           var question_name = $('#'+data).attr("name");
+            var myArray = question_name.split('_');
+            //alert(question_name);
+            $('#myModal').modal('hide');
+            socket.emit('send_message',{message: question_name, number:myArray[1]});
+    }
+    
+    
+    socket.on("get_message", function(data) {
+        data.message = data.message;
+        data.number = data.number;
+        //alert("result:"+data.message);
+        $('#myModal_quiz'+'_'+ data.number).modal({show:true});
+        //$('#myModal').click;
+        });
+        
+        
+        
+    $('#btn-chat').click(function() {
+            var user_message = $('#btn-input').val();
+            socket.emit('send_chat',{message: user_message});
+    });
+    
+    socket.on("get_chat", function(data) {
+        $('.chat').append('<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header">strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i> 12 mins ago</small></div><p>'+ data.message +' </p></div></li>');
+        });
+        
+     $('#submit-btn_1').click(function() {
+        send_answer("submit-btn_1");
+    });   
+
+    $('#submit-btn_2').click(function() {
+            send_answer("submit-btn_2");
+    });
+    
+      $('#submit-btn_3').click(function() {
+        send_answer("submit-btn_3");
+    });   
+
+    $('#submit-btn_4').click(function() {
+            send_answer("submit-btn_4");
+    });
+    
+    $('#submit-btn_5').click(function() {
+            send_answer("submit-btn_5");
+    });
+    
+    
+    function send_answer(data){
+           var name=$('#'+data).attr("name");
+           var myArray = name.split('_');
+            var user_message = $('input[name=quiz_'+myArray[1]+']:checked').val(); 
+            //alert(user_message); 
+            //alert(name);
+            $('#myModal_quiz_'+myArray[1]).modal('hide');
+            socket.emit('send_answer',{message: user_message,name :name});
+    }
+    
+     socket.on("get_answer", function(person,data) {
+            var role = $("#role_id").val();
+            //alert(person.name);
+            if(role == "teacher"){      
+                //alert(role);
+            //console.log( person.name + " has been answered");
+            var answer=check_answer(data);
+            $("#block").show();
+            $(this).addClass("active");
+            $("#id_quiz").removeClass("active");
+            $("#id_home").addClass("active");
+            $("#chatblock").hide();
+            $("#quiz_block").hide();
+            if(answer == "correct"){
+              $("#"+person.name).parent().append('<i style="float:right; color:#6C0" class="glyphicon glyphicon-ok fa-fw">');
+             }
+             else{
+                 $("#"+person.name).parent().append('<i style="float:right; color:#C00" class="glyphicon glyphicon-remove fa-fw">');
+             }
+         }
+        });
+        
+        function check_answer(data){
+            var result;
+            data.message = data.message;
+            data.name=data.name;
+            //alert(data.message);
+            //alert(data.name);
+            
+            switch(data.name){
+                case "question_1" : if(data.message == 1){
+                                        result="correct";
+                                    }
+                                    else{
+                                        result="wrong";
+                                    }
+                                    break;
+                case "question_2" : if(data.message == 2){
+                                        result="correct";
+                                    }
+                                    else{
+                                        result="wrong";
+                                    }
+                                    break;
+                case "question_3" : if(data.message == 2){
+                                        result="correct";
+                                    }
+                                    else{
+                                        result="wrong";
+                                    }
+                                    break;
+                 case "question_4" : if(data.message == 2){
+                                        result="correct";
+                                    }
+                                    else{
+                                        result="wrong";
+                                    }
+                                    break;
+                case "question_5" : if(data.message == 2){
+                                        result="correct";
+                                    }
+                                    else{
+                                        result="wrong";
+                                    }
+                                    break;
+            }
+            return result;
+        }
+        });

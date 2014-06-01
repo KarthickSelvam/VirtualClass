@@ -6,16 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GlobalEnglish :: Hackathon - Team 4</title>
+    <title>GlobalEnglish :: Hackathonds - Team 4</title>
 
     <!-- Core CSS - Include with every page -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-    <link href="css/plugins/timeline/timeline.css" rel="stylesheet">
-
     <!-- SB Admin CSS - Include with every page -->
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
@@ -29,61 +24,31 @@
 		            <div class="profile_picture_name">
 		            	<h2>Welcome to Virtual Classroom</h2>
 		            	<p>Enter you name below to sign in</p>
-		            </div><input type="textarea" class="form-control" id="exampleInputEmail1" placeholder="Ente your Name">
-                                           
-                                            <button type="submit" class=" btn btn-xs btn-primary login">Ask</button><span><a href="#"> <img alt="" src="images/follow_user.png"> </a></span>
+		            </div><input type="textarea" class="form-control" id="name" placeholder="Enter your Name">
+                            <div class="radio">
+  <label>
+    <input type="radio" name="type" id="teacher" value="option1" checked>
+    Teacher
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="type" id="learner" value="option2">
+    Learner
+  </label>
+</div>
+      <input type="text" id="classname" class="form-control" placeholder="Enter Class Name">
+      <input type="text" id="classid" class="form-control" placeholder="Enter Class ID">  
+                                            <button type="submit" id='loginSubmit' class=" btn btn-xs btn-primary login">Go</button><span><a href="#"> <img alt="" src="images/follow_user.png"> </a></span>
 		          </div>
-		           <!--<div class="articles_list">
-		           	  <ul>
-		           	  	<li><a class="red" href="#"> <img alt="" src="images/comments.png"> 23</a></li>
-		           	  	<li><a class="purple" href="#"> <img alt="" src="images/views.png"> 841</a></li>
-		           	  	<li><a class="yellow" href="#"> <img alt="" src="images/likes.png"> 49</a></li>
-		           	  	<div class="clear"></div>	
-		           	  </ul>
-		           </div>-->
 		       </div>
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-    <!-- Page-Level Plugin Scripts - Dashboard -->
-    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="js/plugins/morris/morris.js"></script>
-
     <!-- SB Admin Scripts - Include with every page -->
-    <script src="js/sb-admin.js"></script>
-
-  
-	<script type="text/javascript">
-		$(document).ready(function() {
-		
-		$('#myTab a').click(function (e) {
-		  e.preventDefault()
-		  $(this).tab('show')
-		})
-	});
-	 $(document).ready(function() {
-          $("#chatblock").hide();
-        });
-        
-        $( "#id_profile" ).click(function() {
-            $("#block").hide();
-            $(this).addClass("active");
-            $("#id_home").removeClass("active");
-            $("#chatblock").show();
-       });
-
-      $( "#id_home" ).click(function() {
-            $("#block").show();
-            $(this).addClass("active");
-            $("#id_profile").removeClass("active");
-            $("#chatblock").hide();
-      });
-    
-</script><!---->
+    <script src="js/index.js"></script>
 </body>
 
 </html>
