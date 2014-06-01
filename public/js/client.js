@@ -301,8 +301,14 @@ socket.on("history", function(data) {
       } else {
         html = "<img class=\"flag flag-"+obj.country+"\"/>";
       }
-      $('#people').append("<li class=\"list-group-item\"><span id="+obj.name+">" + obj.name + "</span> <i class=\"fa fa-"+obj.device+"\"></i> " + html + " <a href=\"#\" class=\"whisper btn btn-xs\">whisper</a></li>");
+      if(name!=obj.name){
+        var icon = '<i class=\"fa fa-user\"></i> ';
+      if(obj.name=='teacher'){
+        var icon = '<i class=\"fa fa-book\"></i> ';
+      }
+      $('#people').append("<li class=\"list-group-item\">"+ icon +"<span id="+obj.name+">" + obj.name + "</span> <i class=\"fa fa-"+obj.device+"\"></i> " + html + "</li>");
       //peopleOnline.push(obj.name);
+    }
     });
 
     /*var whisper = $("#whisper").prop('checked');
@@ -337,7 +343,7 @@ socket.on("history", function(data) {
            alert(name);
     var session = OT.initSession(data.apiKey, data.sessionId);
    session.on("sessionConnected", function (event) {
-      var publisherOptions = {width: 400, height:300, name:name};
+      var publisherOptions = {width: '100%', height:'100%', name:name};
        // This assumes that there is a DOM element with the ID 'publisher':
        publisher = OT.initPublisher('publisher', publisherOptions);
       session.publish(publisher);
@@ -345,27 +351,35 @@ socket.on("history", function(data) {
    });
    session.connect(data.token);
    session.on('streamCreated', function(event) {
-  console.log(event);
-   alert('streamCreated');
-  session.subscribe(event.stream, "students", { insertMode: "append" });
+  //console.log(event);
+   //alert('streamCreated');
+  if(event.stream.name==="teacher"){
+  session.subscribe(event.stream, "publisher", { insertMode: "replace" });
+  }else{
+      session.subscribe(event.stream, "students", { insertMode: "append" });
+  }
 });
   });
     socket.on("startParticipant", function(data) {   
     var session = OT.initSession(data.apiKey,data.sessionId);
     
    session.on("sessionConnected", function (event) {
-      var publisherOptions = {width: 200, height:100, name:name};
+      var publisherOptions = {width: '100%', height:'100%', name:name};
        // This assumes that there is a DOM element with the ID 'publisher':
        publisher = OT.initPublisher('students', publisherOptions);
        console.log(event);
-       alert('sessionConnected');
+       //alert('sessionConnected');
       session.publish(publisher);
    });
    session.connect(data.token);
    session.on('streamCreated', function(event) {
   console.log(event);
-  alert('streamCreated');
-  session.subscribe(event.stream, "students", { insertMode: "append" });
+  //alert('streamCreated');
+  if(event.stream.name==="teacher"){
+  session.subscribe(event.stream, "publisher", { insertMode: "replace" });
+  }else{
+      session.subscribe(event.stream, "students", { insertMode: "append" });
+  }
   });
 });
 
