@@ -132,9 +132,7 @@ img {
     border-color: #DDDDDD;
     color: #FFFFFF;
 }
-.page-header {
-    margin: 12px 0 20px;
-}
+
 .panel-body .row .portfolio-item {
     margin-bottom: 25px;
 }
@@ -152,7 +150,10 @@ img {
 	margin-bottom:0;
 	}
 .notification-panel .panel-heading a{
-	color:#CCC;
+	color:#FFFFFF;
+	}
+.notification-panel .panel{
+	border:none;
 	}
 .notification-panel .panel-body{
 	padding:0;
@@ -161,6 +162,15 @@ img {
 .notification-panel .panel-body	.list-group-item{
 	border-bottom: 1px solid #DDDDDD;
 	}
+.nav-tabs > li > a {
+    margin-right: 0;
+    border-radius: 2px 4px 0 0;
+}
+#chatblock {
+    border-top: medium none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
 .thumbnail {
     border-radius: 0px;
     margin-bottom: 20px;
@@ -170,10 +180,10 @@ img {
 	padding:0;
 	}
 #id_home {
-    width: 38%;
+    width: 50%;
 }
 #id_profile {
-    width: 62%;
+    width: 50%;
 }
 .btn-group.pull-right.logout {
     margin-left: 10px;
@@ -199,7 +209,13 @@ iframe {
 	border:0;
 	min-height:410px;
 }
-
+.page-header {
+    margin: 10px 0 0px;
+	border-bottom:0;
+}
+.top-bar{
+	 height: 40px;
+	}
 @media (min-width: 768px) and (max-width: 979px) {
 	.mytopbar {
 		background-color: black;
