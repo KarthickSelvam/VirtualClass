@@ -67,7 +67,7 @@ function toggleChatWindow() {
 
 $(document).ready(function() {
   //setup "global" variables first
-  socket = io.connect("http://10.98.5.137:3000");
+  socket = io.connect("http://10.98.6.69:3000");
   var myRoomID = null;
 
   $("form").submit(function(event) {
@@ -129,7 +129,7 @@ $(document).ready(function() {
   });
 
   //main chat screen
-  $("#chatForm").submit(function() {
+  $("#btn-chat").click(function() {
     var msg = $("#msg").val();
     if (msg !== "") {
       socket.emit("send", msg);
