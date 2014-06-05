@@ -67,7 +67,11 @@ function toggleChatWindow() {
 
 $(document).ready(function() {
   //setup "global" variables first
+<<<<<<< HEAD
   socket = io.connect("http://10.98.6.54:3000");
+=======
+  socket = io.connect("http://10.98.6.69:3000");
+>>>>>>> d493693660a771e97eb9d3d4735c96d2cd946c9e
   var myRoomID = null;
 
   $("form").submit(function(event) {
@@ -129,7 +133,11 @@ $(document).ready(function() {
   });
 
   //main chat screen
+<<<<<<< HEAD
   $("#btn-chat").submit(function() {
+=======
+  $("#btn-chat").click(function() {
+>>>>>>> d493693660a771e97eb9d3d4735c96d2cd946c9e
     var msg = $("#msg").val();
     if (msg !== "") {
       socket.emit("send", msg);
