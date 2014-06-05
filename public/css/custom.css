@@ -1,5 +1,5 @@
 body {
-    background-color: #2D2E33;
+    background-color: #FFFFFF;
 }
 /*login*/
 .navbar-header {
@@ -170,7 +170,26 @@ img {
     border-top: medium none;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+        
 }
+#chatblock .panel-heading {
+    background-color: #2D2E33 !important;
+    border-color: #DDDDDD!important ;
+    color:#FFFFFF!important ;
+    border-radius:0px;
+}
+#chatblock .panel-body {
+    background-color: #515151;
+   color:#FFFFFF !important;
+   border-color:#FFFFFF !important;   
+   
+   
+}
+ #chatblock .panel-footer{
+                         
+                         
+                               
+                           }
 .thumbnail {
     border-radius: 0px;
     margin-bottom: 20px;
@@ -180,10 +199,10 @@ img {
 	padding:0;
 	}
 #id_home {
-    width: 50%;
+    width: 100%;
 }
 #id_profile {
-    width: 50%;
+   
 }
 .btn-group.pull-right.logout {
     margin-left: 10px;
@@ -195,7 +214,6 @@ img {
 	}
 .btn.btn-xs.btn-primary.ask {
     float: right;
-    margin-top: 10px;
     width: 90px;
 }
 .active-menu{
@@ -216,6 +234,9 @@ iframe {
 .top-bar{
 	 height: 40px;
 	}
+.OT_publisher, .OT_subscriber {
+       height: 237px !important;
+}
 @media (min-width: 768px) and (max-width: 979px) {
 	.mytopbar {
 		background-color: black;

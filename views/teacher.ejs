@@ -1,586 +1,527 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GlobalEnglish :: Hackathons - Team 4</title>
+        <title>GlobalEnglish :: Hackathons - Team 3</title>
 
-    <!-- Core CSS - Include with every page -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <!-- Core CSS - Include with every page -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-    <link href="/css/plugins/timeline/timeline.css" rel="stylesheet">
+        <!-- Page-Level Plugin CSS - Dashboard -->
+        <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+        <link href="/css/plugins/timeline/timeline.css" rel="stylesheet">
 
-    <!-- SB Admin CSS - Include with every page -->
-    <link href="/css/sb-admin.css" rel="stylesheet">
-    <link href="/css/custom.css" rel="stylesheet">
+        <!-- SB Admin CSS - Include with every page -->
+        <link href="/css/sb-admin.css" rel="stylesheet">
+        <link href="/css/custom.css" rel="stylesheet">
 
-</head>
-<body>
-    <div id="wrapper" class="teacher">
-    
-        <nav class="navbar navbar-default navbar-fixed-top mytopbar" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">GlobalEnglish :: Hackathon - Team 4</a>
-            </div>
-            <!-- /.navbar-header -->
-            <div id='role' style='display:none'><input type='hidden' id='role_id' value='teacher'/></div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-tasks">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Tasks</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-tasks -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>col-lg-8
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
+    </head>
+    <body>
+        <div id="wrapper" class="teacher">
 
-            <div class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                       	<li  class="active-menu">
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Home</a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Drawing Board</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> File Sharing</a>
-                            
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Screen Sharing</a>
-                        </li>
-                         <li>
-                            <a href="tables.html"><i class="fa fa-dashboard fa-fw"></i> Quiz</a>
-                        </li>
-                       
-                    </ul>
-                    <!-- /#side-menu -->
+            <nav class="navbar navbar-default navbar-fixed-top mytopbar" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">GlobalEnglish :: Hackathon - Team 3</a>
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
-                    <div class="col-lg-12 top-bar" >
-                    <button id="id_quiz" type="submit" class=" btn btn-xs btn-primary ask" data-toggle="modal" data-target="#myModal">Ask</button>
-     
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4 class="page-header"><%= className %></h4> <span>ID : <span id="roomid"></span></span>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    
-                   
-                    
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Video Streaming
-                        </div>
-                        <!-- /.panel-heading -->
-                      <!-- /  <div class="framer">
-                        	
-                            	<iframe src="publisher.html"></iframe>
-                            
-                        </div> -->                        
-                        <div id="students">
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4 notification">
-                	<div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> <%= name %>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                           <div id="publisher">
-                        </div>
-                           
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <div class="panel panel-default notification-panel">
-                         <!-- <div class="panel-heading">
-                          <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                            
-                        </div>-->
-                        <ul class="nav nav-tabs panel-heading" id="myTab">
-                                <li id="id_home" class="active"><a><i class="fa fa-bell fa-fw"></i> Notification</a></li>
-                                <li id="id_profile" ><a> <i class="fa fa-comments fa-fw"></i>Chat</a></li>
-                            </ul>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body tab-content">
-                            <div class="list-group tab-pane active" id="block">
-                            	<div class="col-md-12">
-                                	
-                                
-                                </div>
-                                <ul id="people" class="list-group"></ul>
-                               
-                            </div>
-                           
-                           <div class="list-group tab-pane active" id="profile">
-                               
-                               
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                   
-                    <!-- /.panel -->
-                    <div class="chat-panel panel panel-default" id="chatblock">
-                        
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="chat">
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong> 
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                            </small>
-                                        </div>
+                <!-- /.navbar-header -->
+                <div id="role" style="display:none"><input type="hidden" id="role_id" value="teacher" /></div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                    </div>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                    </div>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                    </div>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>Read All Messages</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-messages -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-tasks">
+                            <li>
+                                <a href="#">
+                                    <div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            <strong>Task 1</strong>
+                                            <span class="pull-right text-muted">40% Complete</span>
                                         </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                        <strong class="primary-font">Bhaumik Patel</strong>
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                            
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                <span class="sr-only">40% Complete (success)</span>
+                                            </div>
                                         </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
                                     </div>
-                                </li>
-                                <li class="left clearfix">
-                                   <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong> 
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                            </small>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <p>
+                                            <strong>Task 2</strong>
+                                            <span class="pull-right text-muted">20% Complete</span>
+                                        </p>
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                                <span class="sr-only">20% Complete</span>
+                                            </div>
                                         </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
                                     </div>
-                                </li>
-                                <li class="left clearfix">
-                                  <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                        <strong class="primary-font">Bhaumik Patel</strong>
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                            
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <p>
+                                            <strong>Task 3</strong>
+                                            <span class="pull-right text-muted">60% Complete</span>
+                                        </p>
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                <span class="sr-only">60% Complete (warning)</span>
+                                            </div>
                                         </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            <strong>Task 4</strong>
+                                            <span class="pull-right text-muted">80% Complete</span>
                                         </p>
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                <span class="sr-only">80% Complete (danger)</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                        <div class="panel-footer"><div class="btn-group pull-right logout">
-                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-chevron-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu slidedown">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-refresh fa-fw"></i> Refresh
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-check-circle fa-fw"></i> Available
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-times fa-fw"></i> Busy
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-clock-o fa-fw"></i> Away
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-sign-out fa-fw"></i> Sign Out
-                                                </a>
-                                            </li>
-                                        </ul>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>See All Tasks</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-tasks -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
                                     </div>
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-tasks fa-fw"></i> New Task
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>col-lg-8
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-alerts -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+                <div class="navbar-default navbar-static-side" role="navigation">
+                    <div class="sidebar-collapse" id="side-menu">
+                        <div class="chat-panel panel panel-default" id="chatblock">
+                            <div class="panel-heading">
+                                <i class="fa fa-comments fa-fw"></i>
+                            Chat
+                                <div class="btn-group pull-right">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        <i class="fa fa-chevron-down"></i>
                                     </button>
-                                </span>
+                                    <ul class="dropdown-menu slidedown">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-refresh fa-fw"></i> Refresh
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-check-circle fa-fw"></i> Available
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-times fa-fw"></i> Busy
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-clock-o fa-fw"></i> Away
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body" style="width: 100%">
+                                <ul class="chat" id="msgs">
+
+
+                                </ul>
+                            </div>
+                            <!-- /.panel-body -->
+                            <div class="panel-footer">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Type your message here..." class="form-control input-sm" id="msg">
+                                    <span class="input-group-btn">
+                                        <button id="btn-chat" class="btn btn-warning btn-sm">
+                                        Send
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- /.panel-footer -->
                         </div>
-                        <!-- /.panel-footer -->
+
+
+
+                                                    <!-- <ul class="nav" id="side-menu">
+                                                    <li  class="active-menu">
+                                                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Drawing Board</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="fa fa-edit fa-fw"></i> File Sharing</a>
+                            
+                                                    </li>
+                                                    <li>
+                                                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> Screen Sharing</a>
+                                                    </li>
+                                                     <li>
+                                                        <a href="tables.html"><i class="fa fa-dashboard fa-fw"></i> Quiz</a>
+                                                    </li>
+                            
+                                                </ul>-->
+                        <!-- /#side-menu -->
                     </div>
-                    <!-- /.panel .chat-panel -->
+                    <!-- /.sidebar-collapse -->
                 </div>
-                <!-- /.col-lg-4 -->
+                <!-- /.navbar-static-side -->
+            </nav>
+
+            <div id="page-wrapper">
+
+                <div class="row">
+                    <div class="col-lg-12 top-bar">
+                        <h4 class="page-header"><%= className %></h4> <span>ID : <span id="roomid"></span></span>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-8">
+
+
+
+                        <!-- /.panel -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-clock-o fa-fw"></i> Video Streaming
+                            </div>
+
+                            <!-- /.panel-heading -->
+                                                            <!-- /  <div class="framer">
+                                
+                                                                <iframe src="publisher.html"></iframe>
+                                
+                                                        </div> -->
+                            <div class="iframeContent"><iframe id="whiteboardIframe" type="text/html" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen" src="http://docs.google.com/a/divego.com/drawings/d/1BlnIUQ29iSiRbGqfaptmZ5SQ2DHOv_YpgKfjgTgK0ls/edit?usp=drive_web&amp;rm=embedded&amp;pli=1&amp;embedded=true"></iframe></div>
+                            <div id="students">
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-8 -->
+                    <div class="col-lg-4 notification">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-bell fa-fw"></i> <%= name %><button id="id_quiz" type="submit" class=" btn btn-xs btn-primary ask" data-toggle="modal" data-target="#myModal">Ask</button>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div id="publisher">
+                                </div>
+
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <div class="panel panel-default notification-panel">
+
+                            <!-- /.panel-heading -->
+                            <div class="panel-body tab-content">
+                                <div class="list-group tab-pane active" id="block">
+                                    <div class="col-md-12">
+
+
+                                    </div>
+                                    <ul id="people" class="list-group"></ul>
+
+                                </div>
+
+                                <div class="list-group tab-pane active" id="profile">
+
+
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+            <!-- /#page-wrapper -->
+            <div class="modal fade quiz-teacher" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" id="myModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Select Chapters</h4>
+                        </div>
+                        <div class="modal-body">
+                            <a class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 1
+                                <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_1" name="question_1">Ask</button>
+                            </a>
+                            <a class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 2
+                                <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_2" name="question_2">Ask</button>
+                            </a>
+                            <a class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 3
+                                <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_3" name="question_3">Ask</button>
+                            </a>
+                            <a class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 4
+                                <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_4" name="question_4">Ask</button>
+                            </a>
+                            <a class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 5
+                                <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_5" name="question_5">Ask</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /#page-wrapper -->
-        <div class="modal fade quiz-teacher" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" id="myModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Select Chapters</h4>
-        </div>
-        <div class="modal-body"> 
-           <a class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 1
-          <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_1" name="question_1">Ask</button>
-          </a> 
-            <a  class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 2
-          <button data-dismiss="modal" aria-hidden="true"  class="pull-right btn btn-xs btn-primary" type="submit" id="sender_2" name="question_2">Ask</button>
-          </a> 
-            <a  class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 3
-          <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_3" name="question_3">Ask</button>
-          </a> 
-            <a  class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 4
-          <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_4" name="question_4">Ask</button>
-          </a> 
-            <a  class="list-group-item"> <i class="glyphicon glyphicon-list-alt fa-fw"></i> Chapter 5
-          <button data-dismiss="modal" aria-hidden="true" class="pull-right btn btn-xs btn-primary" type="submit" id="sender_5" name="question_5">Ask</button>
-          </a> 
-           </div>
-      </div>
-    </div>   
-  </div>
-    </div>
-    <!-- /#wrapper -->
+        <!-- /#wrapper -->
+        <!-- Core Scripts - Include with every page -->
+        <script src="/js/jquery-1.10.2.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
-    <!-- Core Scripts - Include with every page -->
-    <script src="/js/jquery-1.10.2.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <!-- Page-Level Plugin Scripts - Dashboard -->
+        <script src="/js/plugins/morris/raphael-2.1.0.min.js"></script>
+        <script src="/js/plugins/morris/morris.js"></script>
 
-    <!-- Page-Level Plugin Scripts - Dashboard -->
-    <script src="/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="/js/plugins/morris/morris.js"></script>
+        <!-- SB Admin Scripts - Include with every page -->
+        <script src="/js/sb-admin.js"></script>
+        <script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/client.js"></script>
 
-    <!-- SB Admin Scripts - Include with every page -->
-    <script src="/js/sb-admin.js"></script>
-    <script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script> 
-    <script src="/js/client.js"></script>
 
-  
-	<script type="text/javascript">
-		$(document).ready(function() {
-		
-		$('#myTab a').click(function (e) {
-		  e.preventDefault()
-		  $(this).tab('show')
-		})
-	});
-	 $(document).ready(function() {
-          $("#chatblock").hide();
-        });
+        <script type="text/javascript">
+                $(document).ready(function() {
+            
+                $('#myTab a').click(function (e) {
+                  e.preventDefault()
+                  $(this).tab('show')
+                })
+            });
+             $(document).ready(function() {
+                 // $("#chatblock").hide();
+                });
+            
+                $( "#id_profile" ).click(function() {
+                    $("#block").hide();
+                    $(this).addClass("active");
+                    $("#id_home").removeClass("active");
+                    $("#chatblock").show();
+               });
+            
+              $( "#id_home" ).click(function() {
+                    $("#block").show();
+                    $(this).addClass("active");
+                    $("#id_profile").removeClass("active");
+                    $("#chatblock").hide();
+              });
+            
+        </script><!---->
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function() {
         
-        $( "#id_profile" ).click(function() {
-            $("#block").hide();
-            $(this).addClass("active");
-            $("#id_home").removeClass("active");
-            $("#chatblock").show();
-       });
-
-      $( "#id_home" ).click(function() {
-            $("#block").show();
-            $(this).addClass("active");
-            $("#id_profile").removeClass("active");
-            $("#chatblock").hide();
-      });
-    
-</script><!---->
-</body>
- <script type="text/javascript">
-$(document).ready(function() {
-        var className = "<%= className %>";
-        name = "<%= name %>";
-        //if(socket){
-    var device = "desktop";
-    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
-      device = "mobile";
-    }
-
-      socket.emit("joinserver", name, device);
-      toggleNameForm();
-      toggleChatWindow();
-      $("#msg").focus();
-
-    var roomExists = false;
-    var roomName = className;
-    socket.emit("check", roomName, function(data) {
-      roomExists = data.result;
-       if (roomExists) {
-          $("#errors").empty();
-          $("#errors").show();
-          $("#errors").append("Room <i>" + roomName + "</i> already exists");
-        } else {      
-        if (roomName.length > 0) { //also check for roomname
-          socket.emit("createRoom", roomName);
-          alert('room created');
-          $("#errors").empty();
-          $("#errors").hide();
-          }
-        }
-    });
-    //}
-});
+           $('.navbar-static-side').height($(window).height());
+           /*  $('#page-wrapper #chatblock .panel-body').height($('#page-wrapper').height($(window).height())-186);
+             $(window).resize(function(){
+               $('#chatblock .panel-body').height($(window).height());
+        
+              });*/
+                var className = "<%= className %>";
+                name = "<%= name %>";
+                //if(socket){
+            var device = "desktop";
+            if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
+              device = "mobile";
+            }
+        
+              socket.emit("joinserver", name, device);
+              toggleNameForm();
+              toggleChatWindow();
+              $("#msg").focus();
+        
+            var roomExists = false;
+            var roomName = className;
+            socket.emit("check", roomName, function(data) {
+              roomExists = data.result;
+               if (roomExists) {
+                  $("#errors").empty();
+                  $("#errors").show();
+                  $("#errors").append("Room <i>" + roomName + "</i> already exists");
+                } else {      
+                if (roomName.length > 0) { //also check for roomname
+                  socket.emit("createRoom", roomName);
+                  alert('room created');
+                  $("#errors").empty();
+                  $("#errors").hide();
+                  }
+                }
+            });
+            //}
+        });
     </script>
 </html>

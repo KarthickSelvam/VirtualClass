@@ -67,7 +67,7 @@ function toggleChatWindow() {
 
 $(document).ready(function() {
   //setup "global" variables first
-  socket = io.connect("http://10.98.5.137:3000");
+  socket = io.connect("http://10.98.6.54:3000");
   var myRoomID = null;
 
   $("form").submit(function(event) {
@@ -129,7 +129,7 @@ $(document).ready(function() {
   });
 
   //main chat screen
-  $("#chatForm").submit(function() {
+  $("#btn-chat").submit(function() {
     var msg = $("#msg").val();
     if (msg !== "") {
       socket.emit("send", msg);
@@ -148,7 +148,7 @@ $(document).ready(function() {
 
   $("#msg").keypress(function(e){
     if (e.which !== 13) {
-      if (typing === false && myRoomID !== null && $("#msg").is(":focus")) {
+      if (typing === false && $("#msg").is(":focus")) {
         typing = true;
         socket.emit("typing", true);
       } else {
@@ -408,17 +408,6 @@ socket.on("history", function(data) {
         $('#data > #question_1').show();
         });
         
-        
-        
-    $('#btn-chat').click(function() {
-            var user_message = $('#btn-input').val();
-            socket.emit('send_chat',{message: user_message});
-    });
-    
-    socket.on("get_chat", function(data) {
-        $('.chat').append('<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header">strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i> 12 mins ago</small></div><p>'+ data.message +' </p></div></li>');
-        });
-        
      $('#submit-btn').click(function() {
             var user_message = 1;     
             socket.emit('send_answer',{message: user_message});
@@ -465,13 +454,13 @@ $('#sender_1').bind("click", function(event) {
         
         
     $('#btn-chat').click(function() {
-            var user_message = $('#btn-input').val();
+            var user_message = $('#msg').val();
             socket.emit('send_chat',{message: user_message});
     });
     
     socket.on("get_chat", function(data) {
-        $('.chat').append('<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header">strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i> 12 mins ago</small></div><p>'+ data.message +' </p></div></li>');
-        });
+      $('.chat').append('<li>'+data.message+'<li>');
+    });
         
      $('#submit-btn_1').click(function() {
         send_answer("submit-btn_1");

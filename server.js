@@ -18,7 +18,7 @@ if (!apiKey || !apiSecret) {
 }
 app.configure(function() {
 	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
-  	app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "10.98.5.137");
+  	app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "10.98.6.54");
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.static(__dirname + '/public'));
@@ -388,14 +388,6 @@ io.sockets.on("connection", function (socket) {
             });
         });
         
-        io.sockets.on("connection", function (socket) {
-            socket.on("send_chat", function(data) {
-              data.message = data.message;
-                    io.sockets.emit("get_chat",data);
-                    //io.socket.in('teacher').emit('new_msg', {msg: 'hello'});
-            });
-        });
-        
         
         io.sockets.on("connection", function (socket) {
             socket.on("send_answer", function(data) {
@@ -415,7 +407,8 @@ io.sockets.on("connection", function (socket) {
         
         io.sockets.on("connection", function (socket) {
             socket.on("send_chat", function(data) {
-              data.message = data.message;
+              var id = people[socket.id];
+              data.message = id.name+' : '+data.message;
                     io.sockets.emit("get_chat",data);
                     //io.socket.in('teacher').emit('new_msg', {msg: 'hello'});
             });
