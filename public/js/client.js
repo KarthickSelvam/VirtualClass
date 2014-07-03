@@ -7,7 +7,11 @@
 var final_transcript = '';
 var recognizing = false;
 var last10messages = []; //to be populated later
-
+var apiKey = 44816552,
+    apiSecret = '5734c2c21138495a89abbda37b9549406e94556f',
+    sessionId='1_MX40NDgxNjU1Mn5-U2F0IE1heSAzMSAwNjo1MjoyNCBQRFQgMjAxNH4wLjgwOTE0MjY1fn4',
+    token='T1==cGFydG5lcl9pZD00NDgxNjU1MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz05YzY1YjYxOGFmNWVkOGNkNThmMjE5ZTI2MzQxODUzNjIyOWRmMDBhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRneE5qVTFNbjUtVTJGMElFMWhlU0F6TVNBd05qbzFNam95TkNCUVJGUWdNakF4Tkg0d0xqZ3dPVEUwTWpZMWZuNCZjcmVhdGVfdGltZT0xNDAxNTQ0MzUxJm5vbmNlPTAuNTk2OTEwMTI3MzA3NDAyNiZleHBpcmVfdGltZT0xNDAyMTQ5MTM1JmNvbm5lY3Rpb25fZGF0YT0=';
+var session = OT.initSession(apiKey,sessionId);
 if (!('webkitSpeechRecognition' in window)) {
   console.log("webkitSpeechRecognition is not available");
 } else {
@@ -67,11 +71,7 @@ function toggleChatWindow() {
 
 $(document).ready(function() {
   //setup "global" variables first
-<<<<<<< HEAD
   socket = io.connect("http://10.98.6.54:3000");
-=======
-  socket = io.connect("http://10.98.6.69:3000");
->>>>>>> d493693660a771e97eb9d3d4735c96d2cd946c9e
   var myRoomID = null;
 
   $("form").submit(function(event) {
@@ -133,11 +133,7 @@ $(document).ready(function() {
   });
 
   //main chat screen
-<<<<<<< HEAD
   $("#btn-chat").submit(function() {
-=======
-  $("#btn-chat").click(function() {
->>>>>>> d493693660a771e97eb9d3d4735c96d2cd946c9e
     var msg = $("#msg").val();
     if (msg !== "") {
       socket.emit("send", msg);
@@ -348,14 +344,14 @@ socket.on("history", function(data) {
   });
 
   socket.on("roomList", function(data) {   
-           alert(name);
-    var session = OT.initSession(data.apiKey, data.sessionId);
+           //alert(name);
+    //var session = OT.initSession(data.apiKey, data.sessionId);
    session.on("sessionConnected", function (event) {
       var publisherOptions = {width: '100%', height:'100%', name:name};
        // This assumes that there is a DOM element with the ID 'publisher':
        publisher = OT.initPublisher('publisher', publisherOptions);
       session.publish(publisher);
-      alert('sessionConnected');
+      //alert('sessionConnected');
    });
    session.connect(data.token);
    session.on('streamCreated', function(event) {
@@ -369,25 +365,25 @@ socket.on("history", function(data) {
 });
   });
     socket.on("startParticipant", function(data) {   
-    var session = OT.initSession(data.apiKey,data.sessionId);
+    //var session = OT.initSession(data.apiKey,data.sessionId);
     
-   session.on("sessionConnected", function (event) {
-      var publisherOptions = {width: '100%', height:'100%', name:name};
-       // This assumes that there is a DOM element with the ID 'publisher':
-       publisher = OT.initPublisher('students', publisherOptions);
-       console.log(event);
-       //alert('sessionConnected');
-      session.publish(publisher);
-   });
-   session.connect(data.token);
-   session.on('streamCreated', function(event) {
-  console.log(event);
-  //alert('streamCreated');
-  if(event.stream.name==="teacher"){
-  session.subscribe(event.stream, "publisher", { insertMode: "replace" });
-  }else{
-      session.subscribe(event.stream, "students", { insertMode: "append" });
-  }
+      session.on("sessionConnected", function (event) {
+         var publisherOptions = {width: '25%', height:'100%', name:name};
+          // This assumes that there is a DOM element with the ID 'publisher':
+          publisher = OT.initPublisher('students', publisherOptions);
+          console.log(event);
+          //alert('sessionConnected');
+         session.publish(publisher);
+      });
+      session.connect(data.token);
+      session.on('streamCreated', function(event) {
+     console.log(event);
+     //alert('streamCreated');
+     if(event.stream.name==="teacher"){
+     session.subscribe(event.stream, "publisher", { insertMode: "replace" });
+     }else{
+        // session.subscribe(event.stream, "students", { insertMode: "append" });
+     }
   });
 });
 
@@ -395,7 +391,7 @@ socket.on("history", function(data) {
 
   socket.on("sendRoomID", function(data) {
     myRoomID = data.id;
-    alert(data.id);
+    //alert(data.id);
     $('#roomid').html(data.id);
   });
 
@@ -512,8 +508,8 @@ $('#sender_1').bind("click", function(event) {
             $(this).addClass("active");
             $("#id_quiz").removeClass("active");
             $("#id_home").addClass("active");
-            $("#chatblock").hide();
-            $("#quiz_block").hide();
+            //$("#chatblock").hide();
+            //$("#quiz_block").hide();
             if(answer == "correct"){
               $("#"+person.name).parent().append('<i style="float:right; color:#6C0" class="glyphicon glyphicon-ok fa-fw">');
              }

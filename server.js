@@ -319,7 +319,12 @@ io.sockets.on("connection", function (socket) {
                           //console.log(classID);
                           //var opentok = new OpenTok(apiKey, apiSecret);
                           //token = opentok.generateToken(key.sessionID, { role: 'publisher' });
-                          io.sockets.emit("startParticipant", {token:token,apiKey:apiKey,sessionId:sessionId,displayName:people[socket.id].name});
+                          if(people[socket.id].hasOwnProperty('name')){
+                            var nameSend=people[socket.id].name;
+                          }else{
+                            var nameSend='Ipad';
+                          }
+                          io.sockets.emit("startParticipant", {token:token,apiKey:apiKey,sessionId:sessionId,displayName:nameSend});
                   //}
 		//});
 	});
@@ -389,13 +394,13 @@ io.sockets.on("connection", function (socket) {
         });
         
         
-        io.sockets.on("connection", function (socket) {
-            socket.on("send_answer", function(data) {
-              data.message = data.message;
-                    //io.socket.in('teacher').emit('get_answer', data);
-                    io.sockets.emit("get_answer",data);
-            });
-        });
+//        io.sockets.on("connection", function (socket) {
+//            socket.on("send_answer", function(data) {
+//              data.message = data.message;
+//                    //io.socket.in('teacher').emit('get_answer', data);
+//                    io.sockets.emit("get_answer",data);
+//            });
+//        });
         
         io.sockets.on("connection", function (socket) {
             socket.on("send_message", function(data) {

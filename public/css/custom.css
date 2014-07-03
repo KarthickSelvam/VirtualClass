@@ -235,7 +235,8 @@ iframe {
 	 height: 40px;
 	}
 .OT_publisher, .OT_subscriber {
-       height: 237px !important;
+       height: 130px !important;
+       float:left;
 }
 @media (min-width: 768px) and (max-width: 979px) {
 	.mytopbar {
